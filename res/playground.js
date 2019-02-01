@@ -3,7 +3,7 @@ requestAnimationFrame(() => {
 
     let promiseChain = Promise.resolve();
     Array.prototype.forEach.call(examples, (example) => {
-        const url = `./examples/${example.id}.js`;
+        const url = `./examples/${example.id}.min.js`;
         promiseChain = promiseChain.then(() => fetch(url).then((response) => {
             if (response.ok) {
                 return response.text();
