@@ -186,3 +186,17 @@ canvas {
 #afix li a::before {
     content: "> ";
 }
+
+#tooltip {
+    position: fixed;
+    background-color: #FFFFFF;
+    max-width: 600px;
+    font-size: var(--small-text-size);
+    display: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+    padding: 0.5em 1em;
+    transform: translate(0, -100%);
+}
+#tooltip.shown {
+    display: block;
+}

@@ -33,9 +33,9 @@
         You can quickly doing so by using a CDN:
     </p>
     <pre><code class="xml">
-&lt;script src="https://unpkg.com/pencil.js"&gt;&lt;/script&gt;
+<span class="note" data-note="Put one of these just before your <script> near the </body> closing tag.">&lt;script src="https://unpkg.com/pencil.js"&gt;&lt;/script&gt;
 &lt;!-- or --&gt;
-&lt;script src="https://cdn.jsdelivr.net/npm/pencil.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/pencil.js"&gt;&lt;/script&gt;</span>
     </code></pre>
     <p>
         Or you can load it with NPM:
@@ -44,7 +44,7 @@
 $ npm install pencil.js
         </code></pre>
     <pre><code class="javascript">
-import Pencil from "pencil.js";
+<span class="note" data-note="You might want to set up a bundler (like webpack or rollup) to use this syntax.">import</span> <span class="note" data-note="Namespace of the library, could be anything you want.">Pencil</span> from "pencil.js";
     </code></pre>
     <p>
         In both case, you can now use it:
@@ -63,7 +63,7 @@ console.log(Pencil.version);
     <pre><code class="javascript">
 const myFirstScene = new Pencil.Scene();
 // or
-const myFirstScene = new Pencil.Scene(wrapperElement);
+const myFirstScene = new Pencil.Scene(<span class="note" data-note="Element wrapping the created Scene.">wrapperElement</span>);
     </code></pre>
     <p>
         When your {Scene} is ready, if you only need a still frame you can render it once.<br/>
@@ -73,7 +73,7 @@ const myFirstScene = new Pencil.Scene(wrapperElement);
 // Draw the scene once
 myFirstScene.render();
 // or refresh every frame
-myFirstScene.startLoop();
+myFirstScene.<span class="note" data-note="Until you call myFirstScene.stopLoop().">startLoop</span>();
     </code></pre>
 </div>
 <!-- *** COMPONENTS *** -->
@@ -97,7 +97,7 @@ const height = 600;
 const drawingOptions = {
     fill: "red",
 };
-const myRectangle = new Pencil.Rectangle(aPosition, width, height, drawingOptions);
+const myRectangle = new Pencil.Rectangle(<span class="note" data-note="See below for information on Positions.">aPosition</span>, width, height, drawingOptions);
     </code></pre>
     <p>
         To know what are the specific properties of any {Component},
@@ -113,21 +113,19 @@ const myRectangle = new Pencil.Rectangle(aPosition, width, height, drawingOption
     <pre><code class="javascript">
 myScene.add(myRectangle);
 
-myRectangle.add(new Pencil.Circle());
+<span class="note" data-note="Nested Component.">myRectangle.add</span>(new Pencil.Circle(), new Pencil.Star());
     </code></pre>
     <p>
         You can also remove as easily.
     </p>
     <pre><code class="javascript">
-myRectangle.remove(); // Remove itself from its parent
-// is equivalent to
-myScene.delete(myRectangle); // Delete myRectangle from myScene
+myRectangle.<span class="note" data-note="Remove itself from its parent.">remove</span>();
     </code></pre>
     <p>
         Otherwise, {Container} can be hide and show without having to remove and add them.
     </p>
     <pre><code class="javascript">
-myRectangle.hide(); // don't render it or any of its children
+myRectangle.<span class="note" data-note="Don't render itself or any of its children.">hide</span>();
 myRectangle.show();
     </code></pre>
 </div>
@@ -141,31 +139,31 @@ myRectangle.show();
     <pre><code class="javascript">
 const x = 100;
 const y = 200;
-const myPosition = new Position(x, y);
+const myPosition = new Pencil.Position(x, y);
     </code></pre>
     <p>
         Alternatively, anywhere a position is needed, you can use this intuitive shorthand.
     </p>
     <pre><code class="javascript">
-const myRectangle = new Pencil.Rectangle([100, 200]);
+const myRectangle = new Pencil.Rectangle([<span class="note" data-note="Respectively x and y coordinates.">100, 200</span>]);
     </code></pre>
     <p>
         The {Position} class also comes with a lot of methods that can be chained together.
     </p>
     <pre><code>
-console.log(myPosition); // => [100, 200]
-myPosition.add(10, 20).multiply(2).rotate(0.25);
-console.log(myPosition); // => [-440, 220]
+console.log(myPosition.x, myPosition.y); // => 100, 200
+myPosition.add(10, 20).multiply(2).rotate(<span class="note" data-note="All rotations are described by the ratio of a full rotation. Here, 0.25 means a quarter of a rotation (90deg, (&pi;/2)rad, &hellip;).">0.25</span>);
+console.log(myPosition.x, myPosition.y); // => -440, 220
     </code></pre>
     <p>
         These functions don't return a new instance, but instead modify the existing one.
         If you don't want that behavior, you can call <code>clone</code> first.
     </p>
     <pre><code>
-console.log(myPosition); // => [100, 200]
-const clonePosition = myPosition.clone().add(10, 20).multiply(2).rotate(0.25);
-console.log(myPosition); // => [100, 200]
-console.log(clonePosition); // => [-440, 220]
+console.log(myPosition.x, myPosition.y); // => 100, 200
+const clonePosition = myPosition.<span class="note" data-note="Create a new instance.">clone()</span>.add(10, 20).multiply(2).rotate(0.25);
+console.log(myPosition.x, myPosition.y); // => 100, 200
+console.log(clonePosition.x, clonePosition.y); // => -440, 220
     </code></pre>
 </div>
 <!-- *** VECTOR *** -->
@@ -183,11 +181,14 @@ const myVector = new Pencil.Vector([startX, startY], [endX, endY]);
         Of course, instances carries useful chainable methods.
     </p>
     <pre><code class="javascript">
-myVector.add(otherVector).multiply(2); // mutate the instance
+myVector<span class="note" data-note="Will mutate the instance.">.add(otherVector).multiply(2)</span>;
 if (myVector.intersect(someVector)) {
     // myVector intersects someVector
 }
     </code></pre>
+    <p>
+        You can also use the <code>clone</code> method to prevent operation from mutating your instance.
+    </p>
 </div>
 <!-- *** EVENTS *** -->
 <div class="screen">
@@ -196,11 +197,13 @@ if (myVector.intersect(someVector)) {
         All classes fire events whenever necessary and you can listen to those.
     </p>
     <pre><code class="javascript">
-myRectangle.on(Pencil.MouseEvent.events.hover, () => myRectangle.options.fill = "red");
-// Note that in this case, fill color won't change back when myRectangle is not hovered.
+const eventName = <span class="note" data-note="All valid mouse events are stored in Pencil.MouseEvent.events">"hover"</span>;
+const callback = <span class="note" data-note="In that case, fill color won't change back when myRectangle is not hovered.">() => myRectangle.options.fill = "red"</span>;
+myRectangle.on(eventName, callback);
     </code></pre>
     <pre><code class="javascript">
-myScene.on(Pencil.KeyboardEvent.events.down, (event) => {
+const eventName = <span class="note" data-note="All valid keyboard events are stored in Pencil.KeyboardEvent.events">"keydown"</span>;
+myScene.on(eventName, (event) => {
     switch(event.key) {
         case Pencil.KeyboardEvent.keys.enter:
             console.log("Enter key pressed");
@@ -213,23 +216,17 @@ myScene.on(Pencil.KeyboardEvent.events.down, (event) => {
 });
     </code></pre>
     <pre><code class="javascript">
+const eventName = <span class="note" data-note="All valid network events are stored in Pencil.NetworkEvent.events">"ready"</span>;
 const myImage = new Pencil.Image([10, 20], url);
-myImage.on(Pencil.NetworkEvent.events.ready, () => myScene.add(myImage).render())
-    .on(Pencil.NetworkEvent.events.error, () => console.warn("Can't load image"));
+myImage.on(eventName, () => myScene.add(myImage).render());
     </code></pre>
     <p>
-        You can even fire ones yourself.
-    </p>
-    <pre><code class="javascript">
-myImage.fire(new Pencil.BaseEvent("something append", myImage);
-    </code></pre>
-    <p>
-        Events bubble to parent container whenever possible.
+        Events bubble to parent container and all his ancestor.<br/>
         If you want to listen to events only targeting a specific element, you have to set the third parameter to <code>true</code>.
     </p>
     <pre><code class="javascript">
-myScene.on(eventName, callback);       // fires at every children of myScene
-myScene.on(eventName, callback, true); // fires only at myScene
+container.on(eventName, callback);       // trigger at the target and all his ancestors, up to "container"
+container.on(eventName, callback, true); // trigger only when the target is "container"
     </code></pre>
 </div>
 <!-- *** INTERACTIONS *** -->
@@ -240,13 +237,13 @@ myScene.on(eventName, callback, true); // fires only at myScene
     </p>
     <pre><code class="javascript">
 myRectangle.draggable();
-// Or
+// Or with some options
 myRectangle.draggable({
-    x: false, // not along the x axis
+    <span class="note" data-note="Not along the x axis.">x: false</span>,
 });
 // Or
 myRectangle.draggable({
-    constrain: new Pencil.Vector(from, to), // stay inside the box [from, to]
+    <span class="note" data-note="Limits position inside the box [from, to].">constrain: new Pencil.Vector(from, to)</span>,
 });
     </code></pre>
     <p>
@@ -254,13 +251,13 @@ myRectangle.draggable({
     </p>
     <pre><code class="javascript">
 myRectangle.resizable();
-// Or
+// Or with some options
 myRectangle.resizable({
-    x: false, // not along the x axis
+    <span class="note" data-note="Not along the x axis.">x: false</span>,
 });
 // Or
 myRectangle.resizable({
-    constrain: new Pencil.Vector(from, to), // stay inside the box [from, to]
+    <span class="note" data-note="Limits width and height inside the boundaries [min, max].">constrain: new Pencil.Vector(min, max)</span>,
 });
     </code></pre>
 </div>
@@ -271,29 +268,63 @@ myRectangle.resizable({
         Pencil.js provide ways to let your users interacts with common inputs components ({Button}, {Checkbox}, {Select}, {Slider}).
     </p>
     <pre><code class="javascript">
-new Slider(aPosition, {
-    value: 1, // Starting value
+new Pencil.Slider(aPosition, {
+    <span class="note" data-note="Starting value (default 0).">value: 1</span>,
+    <span class="note" data-note="Minimum value (default 0)">min: 1</span>,
+    <span class="note" data-note="Maximum value (default 10).">max: 100</span>,
 });
 
-new Select(aPositionAgain, [
+new Pencil.Select(anotherPosition, <span class="note" data-note="List of items.">[
     "First option",
     "Second option",
     "Third option",
-], {
-    value: 1, // Starting selected index
+]</span>, {
+    <span class="note" data-note="Starting selected index (default 0).">value: 1</span>,
 });
     </code></pre>
     <p>
-        These classes have their own set of options for you to customize how they look.
+        These classes have their own set of options to customize how they look.
     </p>
     <pre><code class="javascript">
-new Button(anotherPosition, {
-    value: "Click me", // Text of the button
-    fill: "red", // Foreground color
-    background: "#222", // Background color
-    border: "gold", // Border color
-    hover: "#444", // Background hovered color
+new Pencil.Button(yetAnotherPosition, {
+    <span class="note" data-note="Text of the button">value: "Click me"</span>,
+    <span class="note" data-note="Foreground color">fill: "red"</span>,
+    <span class="note" data-note="Background color">background: "#222"</span>,
+    <span class="note" data-note="Border color">border: "gold"</span>,
+    <span class="note" data-note="Background color when hovered">hover: "#444"</span>,
 });
+    </code></pre>
+</div>
+<div class="screen">
+    <h2>Color</h2>
+    <p>
+        Whenever you have to provide a color (fill or stroke option for example), you can use
+        <a href="https://developer.mozilla.org/docs/Web/CSS/color_value">all CSS color value</a> or the {Color} class.
+    </p>
+    <p>
+        This utility class has several ways to be created.
+    </p>
+    <pre><code class="javascript">
+new Pencil.Color(<span class="note" data-note="Ratio of red, green and blue.">0.1, 0.5, 0.3</span>);
+new Pencil.Color(<span class="note" data-note="Valid CSS color name.">"indigo"</span>);
+new Pencil.Color(<span class="note" data-note="Hexadecimal starting with #.">"#123456"</span>);
+new Pencil.Color(<span class="note" data-note="Short hexadecimal starting with #.">"#123"</span>);
+new Pencil.Color(<span class="note" data-note="Hexadecimal number.">0x123456</span>);
+    </code></pre>
+    <p>
+        Every of this definition can have one more parameter to define it's opacity.
+    </p>
+    <pre><code class="javascript">
+const opacity = 0.7;
+new Pencil.Color(0.1, 0.5, 0.3, opacity);
+    </code></pre>
+    <p>
+        Then, you have access to numerous methods to manipulate the color.
+    </p>
+    <pre><code class="javascript">
+const color = new Pencil.Color("olive");
+color.<span class="note" data-note="Set its saturation level to 0.9.">saturation(0.9)</span>.<span class="note" data-note="Inverse all its values.">reverse()</span>;
+console.log(<span class="note" data-note="Returns the closest valid color name.">color.name</span>); // => "mediumslateblue"
     </code></pre>
 </div>
 <!-- *** PRO TIPS *** -->
@@ -303,15 +334,16 @@ new Button(anotherPosition, {
         1. Keep your code cleaner and lighter by only importing parts of Pencil.js that you need.
     </p>
     <pre><code class="javascript">
-import { Star, Position as PencilPosition } from pencil.js;
-new Star();
-new PencilPosition();
+import { Star, <span class="note" data-note="Some classes have the same name as existing globals (Image, Math &hellip;) and need to be renamed when imported.">Image as PencilImage</span> } from "pencil.js";
+// same as
+import Star from "@pencil.js/star";
+import PencilImage from "@pencil.js/image";
     </code></pre>
     <p>
         2. You can make you own class surcharging other existing classes.
     </p>
     <pre><code class="javascript">
-import Circle from pencil.js;
+import Circle from "@pencil.js/circle";
 class BlueCircle extends Circle {
     static get defaultOptions () {
         return {
@@ -320,13 +352,23 @@ class BlueCircle extends Circle {
         };
     }
 }
-new BlueCircle();
     </code></pre>
+    <p>
+        3. You can fire your own events.
+    </p>
+    <pre><code class="javascript">
+eventTarget.fire(new Pencil.<span class="note" data-note="You can use MouseEvent by adding a Position, or KeyboardEvent by adding a key as third parameter.">BaseEvent</span>("something append", eventTarget);
+// And listen using the same event name.
+myScene.on("something append", doSomething);
+    </code></pre>
+    <p>&hellip;</p>
 </div>
 
 <aside id="afix">
     <ul id="toc"></ul>
 </aside>
+
+<div id="tooltip"></div>
 
 <script src="https://unpkg.com/pencil.js@1.4.0"></script>
 <script src="../res/highlight.min.js"></script>
@@ -354,6 +396,23 @@ new BlueCircle();
     for(let p of ps) {
         p.innerHTML = p.innerHTML.replace(/{(.+?)}/g, (match, capture) => {
             return `<a href="https://github.com/GMartigny/pencil.js/blob/master/modules/${capture.toLowerCase()}">${capture}</a>`
+        });
+    }
+</script>
+<script>
+    const tooltip = document.getElementById("tooltip");
+    const notes = document.querySelectorAll("code .note");
+    for (let note of notes) {
+        console.log(note.dataset.note);
+        note.addEventListener("mousemove", (event) => {
+            tooltip.classList.add("shown");
+            tooltip.style.left = `${event.clientX + 10}px`;
+            tooltip.style.top = `${event.clientY - 10}px`;
+            tooltip.textContent = note.dataset.note;
+            console.log(note.dataset.note);
+        });
+        note.addEventListener("mouseleave", () => {
+            tooltip.classList.remove("shown");
         });
     }
 </script>
