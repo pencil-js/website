@@ -1,0 +1,24 @@
+@import "monokai.css";
+
+pre {
+    margin: .5em 0;
+}
+code {
+    font-family: var(--code-font);
+    font-size: var(--small-text-size);
+    background: #23241f;
+    color: #FFFFFF;
+    line-height: 1.3em;
+    display: inline;
+    padding: 0.25em 0.5em;
+}
+pre code {
+    margin: 0 150px;
+}
+
+code .note {
+    background-color: rgba(255, 245, 175, 0.15);
+}
+code .note:hover {
+    background-color: rgba(255, 245, 175, 0.3);
+}

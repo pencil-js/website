@@ -1,3 +1,4 @@
+@import "code.css";
 @import url('https://fonts.googleapis.com/css?family=Marck+Script|Ubuntu+Mono|Source+Sans+Pro');
 
 :root {
@@ -73,22 +74,6 @@ strong {
     color: var(--main-color);
 }
 
-pre {
-    margin: .5em 0;
-}
-code {
-    font-family: var(--code-font);
-    font-size: var(--small-text-size);
-    background: #23241f;
-    color: #FFFFFF;
-    line-height: 1.3em;
-    display: inline;
-    padding: 0.25em 0.5em;
-}
-pre code {
-    margin: 0 150px;
-}
-
 .title-screen, .screen {
     min-height: 100vh;
     padding: 5%;
@@ -111,7 +96,6 @@ pre code {
 
 .element {
     margin: 1em 0;
-
 }
 
 .main-title {
