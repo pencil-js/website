@@ -109,6 +109,24 @@ const myRectangle = new Pencil.Rectangle(<span class="note" data-note="More info
         To know what are the specific properties of any {Component},
         refer to its <a href="https://github.com/GMartigny/pencil.js#modules">documentation</a>.
     </p>
+    <p>
+        Here is the list of all {Component} possible options with their default values:
+    </p>
+    <pre><code class="javascript">
+const componentOptions = {
+    <span class="note" data-note="Whether it should be rendered (used by <code>show</code> and <code>hide</code> functions).">shown: true</span>,
+    <span class="note" data-note="Transparency level (between 0 and 1). The value <code>null</code> inherit from its parent.">opacity: null</span>,
+    <span class="note" data-note="Rotation value (between 0 and 1).">rotation: 0</span>,
+    <span class="note" data-note="Rotation center relative to its position.">rotationAnchor: [0, 0]</span>,
+    <span class="note" data-note="Order of drawing for siblings. Negatives values draw it under its parent.">zIndex: 1</span>,
+    <span class="note" data-note="Another shape acting as a mask.">clip: null</span>,
+    <span class="note" data-note="Color for the inside of the shape.">fill: "#000"</span>,
+    <span class="note" data-note="Color for the contour of the shape.">stroke: null</span>,
+    <span class="note" data-note="Width in pixel of the contour.">strokeWidth: 2</span>,
+    <span class="note" data-note="Cursor to apply when the shape is hovered by the mouse (see <code>Pencil.Component.cursors</code> for values).">cursor: "default"</span>,
+    <span class="note" data-note="How lines should connect to each other (see <code>Pencil.Component.joins</code> for values).">join: "miter"</span>,
+};
+    </code></pre>
 </div>
 
 <!-- *** CONTAINERS *** -->
@@ -237,6 +255,41 @@ myImage.on(eventName, () => myScene.add(myImage).render());
     <pre><code class="javascript">
 container.on("eventName", callback);       // Listen to all "eventName" triggered by any container's children
 container.on("eventName", callback, true); // Listen only to "eventName" triggered by container
+    </code></pre>
+</div>
+
+<!-- *** TEXT *** -->
+<div class="screen">
+    <h2>Text</h2>
+    <p>
+        You can write on the scene with the {Text} class. This one is a bit <span title="But don't tell it that, you'll make it sad.">different</span> from the other.
+    </p>
+    <pre><code class="javascript">
+const text = new Pencil.Text(aPosition, <span class="note" data-note="This supports multiline text with <code>``</code> notation or <code>\n</code>.">"Some text"</span>, options);
+    </code></pre>
+    <p>
+        {Text} have for more options on top of <a href="#components">options from Component</a>. Here is the list with default values:
+    </p>
+    <pre><code class="javascript">
+const textOptions = {
+    <span class="note" data-note="Font family of the text. Can be any font on the system or an url to font file (.ttf, .woff &hellip;)">font: "sans-serif"</span>,
+    <span class="note" data-note="Size of the text in pixel.">fontSize: 20</span>,
+    <span class="note" data-note="How to align the text. The <code>start</code> and <code>end</code> values act according to the browser text direction (see <code>Pencil.Text.alignments</code> for values).">align: "start"</span>,
+    <span class="note" data-note="Whether it should be in bold.">bold: false</span>,
+    <span class="note" data-note="Whether it should be in italic.">italic: false</span>,
+    <span class="note" data-note="Whether it should be underscored.">underscore: false</span>,
+    <span class="note" data-note="Ratio of height of each line relative to the text size (2 means that lines are twice as tall as the text).">lineHeight: 1</span>,
+};
+    </code></pre>
+    <p>
+        If the <code>font</code> property of <code>options</code> is an URL, you have to wait for it to be loaded before rendering it.
+    </p>
+    <pre><code class="javascript">
+const fontURL = "https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4mxK.woff2";
+const text = new Pencil.Text(aPosition, "Robot &hearts; you", {
+    font: fontURL,
+});
+<span class="note" data-note="This works fine with fonts on the system too.">text.on("ready"</span>, () => myScene.add(text).render());
     </code></pre>
 </div>
 
@@ -419,7 +472,6 @@ myScene.on(myEventName, doSomething);
     const tooltip = document.getElementById("tooltip");
     const notes = document.querySelectorAll("code .note");
     for (let note of notes) {
-        console.log(note.dataset.note);
         note.addEventListener("mousemove", (event) => {
             tooltip.classList.add("shown");
             tooltip.style.left = `${event.clientX + 10}px`;

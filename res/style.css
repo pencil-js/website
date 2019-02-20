@@ -170,7 +170,7 @@ canvas {
     top: 0;
     background-color: #FFF;
     padding: 1em;
-    opacity: .3;
+    opacity: .4;
     font-size: var(--small-text-size);
     box-shadow: 0 0 10px rgba(0, 0, 0, .5);
 }
