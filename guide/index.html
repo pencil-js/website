@@ -433,55 +433,7 @@ myScene.on(myEventName, doSomething);
     <p>&hellip;</p>
 </div>
 
-<aside id="afix">
-    <ul id="toc"></ul>
-</aside>
-
-<div id="tooltip"></div>
-
-<script src="https://unpkg.com/pencil.js@1.4.0"></script>
 <script src="../res/highlight.min.js"></script>
-<script>
-    const codeBlocks = document.querySelectorAll("pre code");
-    for (let code of codeBlocks) {
-        code.innerHTML = code.innerHTML.trim();
-        hljs.highlightBlock(code);
-    }
-
-    const toc = document.getElementById("toc");
-    const h2s = document.querySelectorAll("h2");
-    for (let h2 of h2s) {
-        const id = h2.textContent.toLowerCase().replace(/\W/g, "-");
-        h2.parentElement.id = id;
-        const item = document.createElement("li");
-        const link = document.createElement("a");
-        link.href = `#${id}`;
-        link.textContent = h2.textContent;
-        item.appendChild(link);
-        toc.appendChild(item);
-    }
-
-    const ps = document.querySelectorAll(".screen p");
-    for(let p of ps) {
-        p.innerHTML = p.innerHTML.replace(/{(.+?)}/g, (match, capture) => {
-            return `<a href="https://github.com/GMartigny/pencil.js/blob/master/modules/${capture.toLowerCase()}">${capture}</a>`
-        });
-    }
-</script>
-<script>
-    const tooltip = document.getElementById("tooltip");
-    const notes = document.querySelectorAll("code .note");
-    for (let note of notes) {
-        note.addEventListener("mousemove", (event) => {
-            tooltip.classList.add("shown");
-            tooltip.style.left = `${event.clientX + 10}px`;
-            tooltip.style.top = `${event.clientY - 10}px`;
-            tooltip.innerHTML = note.dataset.note;
-        });
-        note.addEventListener("mouseleave", () => {
-            tooltip.classList.remove("shown");
-        });
-    }
-</script>
+<script src="../res/script.js"></script>
 </body>
 </html>

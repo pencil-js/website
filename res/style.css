@@ -164,7 +164,7 @@ canvas {
     display: block;
 }
 
-#afix {
+.afix {
     position: fixed;
     right: 0;
     top: 0;
@@ -175,19 +175,19 @@ canvas {
     box-shadow: 0 0 10px rgba(0, 0, 0, .5);
 }
 
-#afix:hover {
+.afix:hover {
     transition: opacity linear .1s;
     opacity: 1;
 }
 
-#afix li {
+.afix li {
     margin: .8em 0;
 }
-#afix li a::before {
+.afix li a::before {
     content: "> ";
 }
 
-#tooltip {
+.tooltip {
     position: fixed;
     background-color: #FFFFFF;
     max-width: 600px;
@@ -197,6 +197,6 @@ canvas {
     padding: 0.5em 1em;
     transform: translate(0, -100%);
 }
-#tooltip.shown {
+.tooltip.shown {
     display: block;
 }
