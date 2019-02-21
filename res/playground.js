@@ -11,10 +11,12 @@ requestAnimationFrame(() => {
 
             return Promise.reject(new URIError(`Unreachable url ${url}`));
         })).then((code) => {
-            const codeElm = document.createElement("pre");
+            const preWrapper = document.createElement("pre");
+            const codeElm = document.createElement("code");
             codeElm.classList.add("javascript");
             codeElm.textContent = code;
-            example.appendChild(codeElm);
+            preWrapper.appendChild(codeElm);
+            example.appendChild(preWrapper);
             hljs.highlightBlock(codeElm);
 
             const wrapper = document.createElement("div");

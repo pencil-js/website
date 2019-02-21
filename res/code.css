@@ -12,7 +12,7 @@ code {
     display: inline;
     padding: 0.25em 0.5em;
 }
-pre code {
+div:not(.example) > pre code {
     margin: 0 150px;
 }
 
