@@ -28,19 +28,19 @@ for(let p of ps) {
     });
 }
 
-const script = document.createElement("div");
-script.classList.add("tooltip");
-document.body.appendChild(script);
+const tooltip = document.createElement("div");
+tooltip.classList.add("tooltip");
+document.body.appendChild(tooltip);
 
 const notes = document.querySelectorAll("code .note");
 for (let note of notes) {
     note.addEventListener("mousemove", (event) => {
-        script.classList.add("shown");
-        script.style.left = `${event.clientX + 10}px`;
-        script.style.top = `${event.clientY - 10}px`;
-        script.innerHTML = note.dataset.note;
+        tooltip.classList.add("shown");
+        tooltip.style.left = `${event.clientX + 10}px`;
+        tooltip.style.top = `${event.clientY - 10}px`;
+        tooltip.innerHTML = decodeURIComponent(note.dataset.note);
     });
     note.addEventListener("mouseleave", () => {
-        script.classList.remove("shown");
+        tooltip.classList.remove("shown");
     });
 }

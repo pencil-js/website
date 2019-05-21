@@ -62,10 +62,10 @@ a {
     color: var(--links-color);
 }
 
-p a {
+p a, aside a {
     border-bottom: 1px dashed var(--links-color);
 }
-p a:hover {
+p a:hover, aside a:hover {
     border-bottom: 1px solid var(--links-color);
 }
 
@@ -167,7 +167,7 @@ canvas {
 .afix {
     position: fixed;
     right: 0;
-    top: 0;
+    top: 100px;
     background-color: #FFF;
     padding: 1em;
     opacity: .4;
@@ -183,8 +183,8 @@ canvas {
 .afix li {
     margin: .8em 0;
 }
-.afix li a::before {
-    content: "> ";
+.afix li::before {
+    content: "🡆 ";
 }
 
 .tooltip {
@@ -199,4 +199,38 @@ canvas {
 }
 .tooltip.shown {
     display: block;
+}
+
+.github-corner > svg {
+    fill: #fff;
+    color: #C6426E;
+    position: absolute;
+    top: 0;
+    border: 0;
+    right: 0;
+}
+.github-corner .octo-arm {
+    transform-origin: 130px 106px;
+}
+.github-corner:hover .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+}
+@keyframes octocat-wave {
+    0%, 100% {
+        transform: rotate(0);
+    }
+    20%, 60% {
+        transform: rotate(-25deg);
+    }
+    40%, 80% {
+        transform: rotate(10deg);
+    }
+}
+@media (max-width:500px){
+    .github-corner:hover .octo-arm {
+        animation: none;
+    }
+    .github-corner .octo-arm {
+        animation: octocat-wave 560ms ease-in-out;
+    }
 }
