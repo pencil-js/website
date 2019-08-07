@@ -399,6 +399,38 @@ console.log(<span class="note" data-note="Returns the closest valid color name."
     </code></pre>
 </div>
 
+<!-- *** NAVIGATION *** -->
+<div class="screen">
+    <h2>Navigation</h2>
+    <p>
+        Pencil.js supports having multiple {Scene} at once and going back and forth between them,
+        but in order to simplify this process, you can use the {Navigation} helper.
+    </p>
+    <pre><code class="javascript">
+const <span class="note" data-note="The returned scene is the default one.">firstScene</span> = Pencil.Navigation.prepareScenes({
+    main: (scene) => {
+        // Add whatever you want to the scene
+    },
+    other: (scene) => {
+        // ...
+    },
+});
+firstScene.options.shown; // true
+    </code></pre>
+    <p>
+        The first on the list is going to be the default scene and displayed right away.<br/>
+        Every {Scene} are going to share the same canvas element. If you already have one in your DOM,
+        you can put as second parameter of the <code>prepareScenes</code> function.
+    </p>
+    <p>
+        If you want to go from a scene to another,
+        you should fire a <code>"change"</code> event and give it the new scene id.
+    </p>
+    <pre><code class="javascript">
+        scene.fire(new BaseEvent(Scene.events.change, "other");
+    </code></pre>
+</div>
+
 <!-- *** PRO TIPS *** -->
 <div class="screen">
     <h2>Pro-tips</h2>
