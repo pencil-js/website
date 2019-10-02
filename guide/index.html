@@ -85,6 +85,50 @@ myFirstScene.<span class="note" data-note="Will animate the scene until you call
     </code></pre>
 </div>
 
+<!-- *** CONTAINERS *** -->
+<div class="screen">
+    <h2>Containers</h2>
+    <p>
+        {Container} are the backbone of Pencil.js. They allow you create hierarchy between your scene elements.
+        Every class inherit from {Container}, it means that you can includes elements to each other by using the <code>.add</code> function.
+    </p>
+    <pre><code class="javascript">
+const child = new Pencil.Containe();
+myScene.add(child);
+
+<span class="note" data-note="Container can be nested.">child.add</span>(new Pencil.Container(), new Pencil.Container());
+    </code></pre>
+    <p>
+        You can also remove them as easily.
+    </p>
+    <pre><code class="javascript">
+child.<span class="note" data-note="Remove itself from its parent.">delete()</span>;
+// or
+myScene.<span class="note" data-note="Remove that child from the container.">remove(child)</span>;
+    </code></pre>
+    <p>
+        Otherwise, {Container} can be hidden and shown without having to remove or add them.
+    </p>
+    <pre><code class="javascript">
+child.<span class="note" data-note="Don't render itself or any of its children.">hide()</span>;
+child.show();
+    </code></pre>
+    <p>
+        {Container} have a list of options, you can set. Here's that list and the default values:
+    </p>
+    <pre><code>
+const containerOptions = {
+    <span class="note" data-note="Whether it should be rendered (used by <code>.show</code> and <code>.hide</code> functions).">shown: true</span>,
+    <span class="note" data-note="Transparency level (between 0 and 1). The value <code>null</code> inherit from its parent.">opacity: null</span>,
+    <span class="note" data-note="Rotation value (between 0 and 1).">rotation: 0</span>,
+    <span class="note" data-note="Rotation center relative to its position.">rotationCenter: [0, 0]</span>,
+    <span class="note" data-note="Scale in x and y axis.">scale: [1, 1]</span>,
+    <span class="note" data-note="Order of drawing for siblings. Negatives values draw it under its parent.">zIndex: 1</span>,
+    <span class="note" data-note="Another shape acting as a mask.">clip: null</span>,
+};
+    </code></pre>
+</div>
+
 <!-- *** COMPONENTS *** -->
 <div class="screen">
     <h2>Components</h2>
@@ -117,45 +161,12 @@ const myRectangle = new Pencil.Rectangle(<span class="note" data-note="More info
     </p>
     <pre><code class="javascript">
 const componentOptions = {
-    <span class="note" data-note="Whether it should be rendered (used by <code>.show</code> and <code>.hide</code> functions).">shown: true</span>,
-    <span class="note" data-note="Transparency level (between 0 and 1). The value <code>null</code> inherit from its parent.">opacity: null</span>,
-    <span class="note" data-note="Rotation value (between 0 and 1).">rotation: 0</span>,
-    <span class="note" data-note="Rotation center relative to its position.">rotationCenter: [0, 0]</span>,
-    <span class="note" data-note="Scale in x and y axis.">scale: [1, 1]</span>,
-    <span class="note" data-note="Order of drawing for siblings. Negatives values draw it under its parent.">zIndex: 1</span>,
-    <span class="note" data-note="Another shape acting as a mask.">clip: null</span>,
     <span class="note" data-note="Color for the inside of the shape.">fill: "#000"</span>,
     <span class="note" data-note="Color for the contour of the shape.">stroke: null</span>,
     <span class="note" data-note="Width in pixel of the contour.">strokeWidth: 2</span>,
-    <span class="note" data-note="Cursor to apply when the shape is hovered by the mouse (see <code>Pencil.Component.cursors</code> for values).">cursor: "default"</span>,
-    <span class="note" data-note="How lines should connect to each other (see <code>Pencil.Component.joins</code> for values).">join: "miter"</span>,
+    <span class="note" data-note="Cursor to apply when the shape is hovered by the mouse.">cursor: Pencil.Component.cursors.default</span>,
+    <span class="note" data-note="How lines should connect to each other.">join: Pencil.Component.joins.miter</span>,
 };
-    </code></pre>
-</div>
-
-<!-- *** CONTAINERS *** -->
-<div class="screen">
-    <h2>Containers</h2>
-    <p>
-        {Scene} and {Component} both inherit from {Container}. It means that you can includes element to each other by using the <code>.add</code> function.
-    </p>
-    <pre><code class="javascript">
-myScene.add(myRectangle);
-
-<span class="note" data-note="Container can be nested.">myRectangle.add</span>(new Pencil.Circle(), new Pencil.Star());
-    </code></pre>
-    <p>
-        You can also remove as easily.
-    </p>
-    <pre><code class="javascript">
-myRectangle.<span class="note" data-note="Remove itself from its parent.">delete()</span>;
-    </code></pre>
-    <p>
-        Otherwise, {Container} can be hidden and shown without having to remove or add them.
-    </p>
-    <pre><code class="javascript">
-myRectangle.<span class="note" data-note="Don't render itself or any of its children.">hide()</span>;
-myRectangle.show();
     </code></pre>
 </div>
 
@@ -182,7 +193,7 @@ const myRectangle = new Pencil.Rectangle([<span class="note" data-note="Respecti
     </p>
     <pre><code>
 console.log(myPosition.x, myPosition.y); // => 100, 200
-myPosition.add(10, 20).multiply(2).rotate(<span class="note" data-note="All rotations are described by the ratio of a full rotation. Here, 0.25 means a quarter of a rotation (90deg, (&pi;/2)rad, &hellip;).">0.25</span>);
+myPosition.add(10, 20).multiply(2).rotate(<span class="note" data-note="All rotations are described by the ratio of a full rotation. Here, 0.25 means a quarter of a rotation (90deg, (&pi;/4)rad, &hellip;).">0.25</span>);
 console.log(myPosition.x, myPosition.y); // => -440, 220
     </code></pre>
     <p>
@@ -229,11 +240,13 @@ if (myVector.intersect(someVector)) {
         All classes fire events whenever necessary and you can listen to those.
     </p>
     <pre><code class="javascript">
+// Mouse events
 const eventName = Pencil.MouseEvent.events.hover;
 const callback = <span class="note" data-note="In that case, fill color won't change back when myRectangle is not hovered anymore.">() => myRectangle.options.fill = "red"</span>;
 myRectangle.on(eventName, callback);
     </code></pre>
     <pre><code class="javascript">
+// Keyboard events
 const eventName = Pencil.KeyboardEvent.events.keydown;
 myScene.on(eventName, (event) => {
     switch(event.key) {
@@ -248,6 +261,7 @@ myScene.on(eventName, (event) => {
 });
     </code></pre>
     <pre><code class="javascript">
+// Network events
 const eventName = Pencil.NetworkEvent.events.ready;
 const myImage = new Pencil.Image([10, 20], url);
 myImage.on(eventName, () => myScene.add(myImage).render());
@@ -278,7 +292,7 @@ const text = new Pencil.Text(aPosition, <span class="note" data-note="This suppo
 const textOptions = {
     <span class="note" data-note="Font family of the text. Can be any font on the system or an url to font file (.ttf, .woff &hellip;)">font: "sans-serif"</span>,
     <span class="note" data-note="Size of the text in pixel.">fontSize: 20</span>,
-    <span class="note" data-note="How to align the text. The <code>start</code> and <code>end</code> values act according to the browser text direction (see <code>Pencil.Text.alignments</code> for values).">align: "start"</span>,
+    <span class="note" data-note="How to align the text. The <code>start</code> and <code>end</code> values act according to the browser text direction.">align: Pencil.Text.alignments.start</span>,
     <span class="note" data-note="Whether it should be in bold.">bold: false</span>,
     <span class="note" data-note="Whether it should be in italic.">italic: false</span>,
     <span class="note" data-note="Whether it should be underscored.">underscore: false</span>,
@@ -293,7 +307,7 @@ const fontURL = "https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4mxK.wof
 const text = new Pencil.Text(aPosition, "Robot &hearts; you", {
     font: fontURL,
 });
-<span class="note" data-note="This works fine even with fonts that don't need to be loaded.">text.on("ready"</span>, () => myScene.add(text).render());
+<span class="note" data-note="This works fine even with local fonts that don't need to be loaded.">text.on("ready"</span>, () => myScene.add(text).render());
     </code></pre>
 </div>
 
@@ -334,7 +348,7 @@ myRectangle.resizable({
 <div class="screen">
     <h2>User inputs</h2>
     <p>
-        Pencil.js provide ways to let your users interacts with common inputs components ({Button}, {Checkbox}, {Select}, {Slider}).
+        Pencil.js provide ways to let your users interacts with common inputs components ({Button}, {Checkbox}, {Select}, {Slider}, {Knob}).
     </p>
     <pre><code class="javascript">
 new Pencil.Slider(aPosition, {
@@ -415,19 +429,20 @@ const <span class="note" data-note="The returned scene is the default one.">firs
         // ...
     },
 });
-firstScene.options.shown; // true
+console.log(firstScene.options.shown && firstScene.isLooped); // => true
     </code></pre>
     <p>
         The first on the list is going to be the default scene and displayed right away.<br/>
         Every {Scene} are going to share the same canvas element. If you already have one in your DOM,
-        you can put as second parameter of the <code>prepareScenes</code> function.
+        you can put it as second parameter of the <code>prepareScenes</code> function.
     </p>
     <p>
         If you want to go from a scene to another,
-        you should fire a <code>"change"</code> event and give it the new scene id.
+        you should fire a <code>"change-scene"</code> event and give it the new scene id.
     </p>
     <pre><code class="javascript">
-        scene.fire(new BaseEvent(Scene.events.change, "other");
+const scene = Pencil.Navigation.getCurrentScene();
+scene.fire(new BaseEvent(Scene.events.change, "other");
     </code></pre>
 </div>
 
@@ -466,6 +481,15 @@ eventTarget.fire(new Pencil.<span class="note" data-note="You can use MouseEvent
 // and listen using the same event name.
 myScene.on(myEventName, doSomething);
     </code></pre>
+    <p>
+        4. You can use the scale option to flip components.
+    </p>
+    <pre><code class="javascript">
+const flippedImage = new Image(position, url, width, height, {
+    scale: [-1, 1], // Flip the image horizontally
+});
+    </code></pre>
+
     <p>&hellip;</p>
 </div>
 
