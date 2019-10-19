@@ -51,7 +51,7 @@ $ npm install pencil.js
 <span class="note" data-note="You might want to set up a bundler (like webpack or rollup) to use this syntax.">import</span> <span class="note" data-note="Namespace of the library, could be anything you want.">Pencil</span> from "pencil.js";
     </code></pre>
     <p>
-        In both case, you can now use it:
+        To test, if it was loaded correctly, you can log its version to the JavaScript console of your browser:
     </p>
     <pre><code class="javascript">
 console.log(Pencil.version);
@@ -78,7 +78,7 @@ const myFirstScene = new Pencil.Scene(<span class="note" data-note="The created 
 myFirstScene.render();
     </code></pre>
     <p>
-        Or, you can make it alive by refreshing every frames.
+        Or, you can make it alive by refreshing every frame.
     </p>
     <pre><code class="javascript">
 myFirstScene.<span class="note" data-note="Will animate the scene until you call <code>myFirstScene.stopLoop()</code>.">startLoop()</span>;
