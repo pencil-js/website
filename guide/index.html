@@ -89,8 +89,8 @@ myFirstScene.<span class="note" data-note="Will animate the scene until you call
 <div class="screen">
     <h2>Containers</h2>
     <p>
-        {Container} are the backbone of Pencil.js. They allow you create hierarchy between your scene elements.
-        Every class inherit from {Container}, it means that you can includes elements to each other by using the <code>.add</code> function.
+        A {Container} allows you to group elements and control them at the same time.
+        Every class inherits from {Container}, which means that you can insert elements into each other by using the <code>.add</code> function.
     </p>
     <pre><code class="javascript">
 const child = new Pencil.Container();
@@ -99,7 +99,7 @@ myScene.add(child);
 <span class="note" data-note="Container can be nested.">child.add</span>(new Pencil.Container(), new Pencil.Container());
     </code></pre>
     <p>
-        You can also remove them as easily.
+        You can also remove them easily.
     </p>
     <pre><code class="javascript">
 child.<span class="note" data-note="Remove itself from its parent.">delete()</span>;
@@ -107,14 +107,14 @@ child.<span class="note" data-note="Remove itself from its parent.">delete()</sp
 myScene.<span class="note" data-note="Remove that child from the container.">remove(child)</span>;
     </code></pre>
     <p>
-        Otherwise, {Container} can be hidden and shown without having to remove or add them.
+        Furthermore, a {Container}'s visibility can be toggled without having to remove it.
     </p>
     <pre><code class="javascript">
 child.<span class="note" data-note="Don't render itself or any of its children.">hide()</span>;
 child.show();
     </code></pre>
     <p>
-        {Container} have a list of options, you can set. Here's that list and the default values:
+        Each {Container} has a list of options, you can set. Here is that list and the default values:
     </p>
     <pre><code>
 const containerOptions = {
