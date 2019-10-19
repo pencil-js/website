@@ -281,13 +281,14 @@ container.on("eventName", callback, true); // Listen only to "eventName" trigger
 <div class="screen">
     <h2>Text</h2>
     <p>
-        You can write on the scene with the {Text} class. This one is a bit <span title="But don't tell it that, you'll make it sad.">different</span> from the other.
+        You can write on the scene with the {Text} class. This one is a bit <span title="But don't tell it that, you'll make it sad.">different</span> from the other components.
     </p>
     <pre><code class="javascript">
-const text = new Pencil.Text(aPosition, <span class="note" data-note="This supports multiline text with <code>``</code> notation or <code>\n</code>.">"Some text"</span>, options);
+const position = [0, 0];
+const text = new Pencil.Text(position, <span class="note" data-note="This supports multiline text with <code>``</code> notation or <code>\n</code>.">"Some text"</span>, options);
     </code></pre>
     <p>
-        {Text} have more options on top of <a href="#components">options from Component</a>. Here is the list with default values:
+        {Text} has more options on top of <a href="#components">options from Component</a>. Here is the list with default values:
     </p>
     <pre><code class="javascript">
 const textOptions = {
@@ -316,7 +317,7 @@ const text = new Pencil.Text(aPosition, "Robot &hearts; you", {
 <div class="screen">
     <h2>Interactions</h2>
     <p>
-        {Component} can be set {draggable} with a simple call of a function.
+        A {Component} can be set {draggable} with a simple call of a function.
     </p>
     <pre><code class="javascript">
 myRectangle.draggable();
@@ -330,7 +331,7 @@ myRectangle.draggable({
 });
     </code></pre>
     <p>
-        {Rectangle} can be set {resizable} with a simple call of a function.
+        A {Rectangle} can be set {resizable} with a simple call of a function.
     </p>
     <pre><code class="javascript">
 myRectangle.resizable();
@@ -349,7 +350,7 @@ myRectangle.resizable({
 <div class="screen">
     <h2>User inputs</h2>
     <p>
-        Pencil.js provide ways to let your users interacts with common inputs components ({Button}, {Checkbox}, {Select}, {Slider}, {Knob}).
+        Pencil.js provides ways to let your users interacts with common inputs components ({Button}, {Checkbox}, {Select}, {Slider}, {Knob}).
     </p>
     <pre><code class="javascript">
 new Pencil.Slider(aPosition, {
@@ -385,7 +386,7 @@ new Pencil.Button(yetAnotherPosition, {
     <h2>Color</h2>
     <p>
         Whenever you have to provide a color (fill or stroke option for example), you can use
-        <a href="https://developer.mozilla.org/docs/Web/CSS/color_value">all CSS color value</a> or the {Color} class.
+        <a href="https://developer.mozilla.org/docs/Web/CSS/color_value">a CSS color value</a> or the {Color} class.
     </p>
     <p>
         This utility class has several ways to be created.
@@ -418,8 +419,8 @@ console.log(<span class="note" data-note="Returns the closest valid color name."
 <div class="screen">
     <h2>Navigation</h2>
     <p>
-        Pencil.js supports having multiple {Scene} at once and going back and forth between them,
-        but in order to simplify this process, you can use the {Navigation} helper.
+        Pencil.js supports having more than one {Scene} at once and going back and forth between them.
+        In order to simplify this process, you can use the {Navigation} helper.
     </p>
     <pre><code class="javascript">
 const <span class="note" data-note="The returned scene is the default one.">firstScene</span> = Pencil.Navigation.prepareScenes({
@@ -434,7 +435,7 @@ console.log(firstScene.options.shown && firstScene.isLooped); // => true
     </code></pre>
     <p>
         The first on the list is going to be the default scene and displayed right away.<br/>
-        Every {Scene} are going to share the same canvas element. If you already have one in your DOM,
+        All scenes are going to share the same canvas element. If you already have one in your DOM,
         you can put it as second parameter of the <code>prepareScenes</code> function.
     </p>
     <p>
@@ -460,7 +461,7 @@ import Star from "@pencil.js/star";
 import PencilImage from "@pencil.js/image";
     </code></pre>
     <p>
-        2. You can make you own class extending other existing ones.
+        2. You can make you own class extending existing ones.
     </p>
     <pre><code class="javascript">
 import Circle from "@pencil.js/circle";
