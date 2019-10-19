@@ -154,11 +154,11 @@ const drawingOptions = {
 const myRectangle = new Pencil.Rectangle(<span class="note" data-note="More information on Positions below.">position</span>, width, height, drawingOptions);
     </code></pre>
     <p>
-        To know what are the specific properties of any {Component},
-        refer to its <a href="https://github.com/GMartigny/pencil.js#modules">documentation</a>.
+        To learn about specific properties of any {Component},
+        refer to the <a href="https://github.com/GMartigny/pencil.js#modules">module documentation</a>.
     </p>
     <p>
-        Here is the list of all {Component} possible options with their default values:
+        Here is the list of all options with their default values:
     </p>
     <pre><code class="javascript">
 const componentOptions = {
@@ -175,7 +175,7 @@ const componentOptions = {
 <div class="screen">
     <h2>Position</h2>
     <p>
-        {Position} is an utility class used all across the Pencil.js library.<br/>
+        {Position} is an utility class used across the Pencil.js library.<br/>
         It serves as a wrapper for a x and y coordinate in 2D space. You can create one using the class constructor.
     </p>
     <pre><code class="javascript">
@@ -184,7 +184,7 @@ const y = 200;
 const myPosition = new Pencil.Position(x, y);
     </code></pre>
     <p>
-        Alternatively, anywhere a position is needed, you can use this intuitive shorthand.
+        Alternatively, anywhere a position is needed, you can use an array shorthand:
     </p>
     <pre><code class="javascript">
 const myRectangle = new Pencil.Rectangle([<span class="note" data-note="Respectively x and y coordinates.">100, 200</span>]);
@@ -198,8 +198,8 @@ myPosition.add(10, 20).multiply(2).rotate(<span class="note" data-note="All rota
 console.log(myPosition.x, myPosition.y); // => -440, 220
     </code></pre>
     <p>
-        These functions don't return a new instance, but instead modify the existing one.
-        If you don't want that behavior, you can call <code>clone</code> first.
+        These functions don't return a new instance, but modify the existing one.
+        If you don't want that behavior, you can call <code>.clone</code> first.
     </p>
     <pre><code>
 console.log(myPosition.x, myPosition.y); // => 100, 200
@@ -213,7 +213,7 @@ console.log(clonePosition.x, clonePosition.y); // => -440, 220
 <div class="screen">
     <h2>Vector</h2>
     <p>
-        Much alike {Position}, {Vector} is an utility wrapper around two {Position}.
+        {Vector} is another utility wrapper containing two {Position}s.
     </p>
     <pre><code>
 const myVector = new Pencil.Vector(fromPosition, toPosition);
@@ -221,7 +221,7 @@ const myVector = new Pencil.Vector(fromPosition, toPosition);
 const myVector = new Pencil.Vector([startX, startY], [endX, endY]);
     </code></pre>
     <p>
-        Of course, each instances carries useful chainable methods.
+        Each instances carries useful chainable methods.
     </p>
     <pre><code class="javascript">
 myVector<span class="note" data-note="Will mutate the instance.">.add(otherVector).multiply(2)</span>;
@@ -230,7 +230,7 @@ if (myVector.intersect(someVector)) {
 }
     </code></pre>
     <p>
-        You can also use the <code>clone</code> method to prevent operations from mutating your instance.
+        You can also use the <code>.clone</code> method to prevent operations from mutating your instance.
     </p>
 </div>
 
