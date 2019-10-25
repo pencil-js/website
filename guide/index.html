@@ -14,14 +14,14 @@
             Guide
         </h1>
         <small>
-            Introduction to all Pencil.js feature&nbsp;&hellip;
+            An introduction to all Pencil.js features
         </small>
     </div>
     <div class="element description">
         <p>
             In this guide, you will discover <strong>most of the features</strong> of the Pencil.js library.<br/>
             It assumes <strong>basic knowledge</strong> of web technologies (HTML, JavaScript, NPM &hellip;).<br/>
-            by the end of the page, you will be able to build your own <strong>creations with ease</strong>.
+            By the end of the page, you will be able to build your own <strong>creations with ease</strong>.
         </p>
         <div>
             <a class="btn" href="https://codepen.io/collection/XqzkNQ/">Examples</a>
@@ -34,7 +34,7 @@
     <h2>Getting started</h2>
     <p>
         First of all, you need to add the library to your page.<br/>
-        You can quickly doing so by using a CDN:
+        You can quickly do so by using a <abbr title="Content delivery network">CDN</abbr>:
     </p>
     <pre><code class="xml">
 <span class="note" data-note="Put one of these just before your %26lt;script%26gt; near the %26lt;/body%26gt; closing tag.">&lt;script src="https://unpkg.com/pencil.js"&gt;&lt;/script&gt;
@@ -51,7 +51,7 @@ $ npm install pencil.js
 <span class="note" data-note="You might want to set up a bundler (like webpack or rollup) to use this syntax.">import</span> <span class="note" data-note="Namespace of the library, could be anything you want.">Pencil</span> from "pencil.js";
     </code></pre>
     <p>
-        In both case, you can now use it:
+        To test, if it was loaded correctly, you can log its version to the JavaScript console of your browser:
     </p>
     <pre><code class="javascript">
 console.log(Pencil.version);
@@ -63,7 +63,7 @@ console.log(Pencil.version);
     <h2>Scene</h2>
     <p>
         The first and main element of your code should be a {Scene}.
-        A scene is bound to an element or to the whole screen by default.
+        A scene uses the whole screen by default, but can be bound to a specific node.
     </p>
     <pre><code class="javascript">
 const myFirstScene = new Pencil.Scene();
@@ -72,13 +72,13 @@ const wrapper = document.querySelector("#wrapper");
 const myFirstScene = new Pencil.Scene(<span class="note" data-note="The created scene will take the whole width and height of the wrapper.">wrapper</span>);
     </code></pre>
     <p>
-        When your {Scene} is set-up, if you only need a still frame, you can render it once.
+        If you only need a still frame, you can render it once.
     </p>
     <pre><code class="javascript">
 myFirstScene.render();
     </code></pre>
     <p>
-        Or, you can make it alive by refreshing every frames.
+        Or, you can make it alive by refreshing every frame.
     </p>
     <pre><code class="javascript">
 myFirstScene.<span class="note" data-note="Will animate the scene until you call <code>myFirstScene.stopLoop()</code>.">startLoop()</span>;
@@ -89,17 +89,17 @@ myFirstScene.<span class="note" data-note="Will animate the scene until you call
 <div class="screen">
     <h2>Containers</h2>
     <p>
-        {Container} are the backbone of Pencil.js. They allow you create hierarchy between your scene elements.
-        Every class inherit from {Container}, it means that you can includes elements to each other by using the <code>.add</code> function.
+        A {Container} allows you to group elements together.
+        Every class inherits from {Container}, which means that you can insert elements into each other by using the <code>.add</code> function.
     </p>
     <pre><code class="javascript">
-const child = new Pencil.Containe();
+const child = new Pencil.Container();
 myScene.add(child);
 
 <span class="note" data-note="Container can be nested.">child.add</span>(new Pencil.Container(), new Pencil.Container());
     </code></pre>
     <p>
-        You can also remove them as easily.
+        You can also remove them easily.
     </p>
     <pre><code class="javascript">
 child.<span class="note" data-note="Remove itself from its parent.">delete()</span>;
@@ -107,14 +107,14 @@ child.<span class="note" data-note="Remove itself from its parent.">delete()</sp
 myScene.<span class="note" data-note="Remove that child from the container.">remove(child)</span>;
     </code></pre>
     <p>
-        Otherwise, {Container} can be hidden and shown without having to remove or add them.
+        Furthermore, a {Container}'s visibility can be toggled without having to remove it.
     </p>
     <pre><code class="javascript">
 child.<span class="note" data-note="Don't render itself or any of its children.">hide()</span>;
 child.show();
     </code></pre>
     <p>
-        {Container} have a list of options, you can set. Here's that list and the default values:
+        Each {Container} has a list of options, you can set. Here is that list and the default values:
     </p>
     <pre><code>
 const containerOptions = {
@@ -145,19 +145,20 @@ const myRectangle = new Pencil.Rectangle();
         To continue on our previous example:
     </p>
     <pre><code class="javascript">
+const position = [100, 25];
 const width = 800;
 const height = 600;
 const drawingOptions = {
     fill: "red",
 };
-const myRectangle = new Pencil.Rectangle(<span class="note" data-note="More information on Positions below.">aPosition</span>, width, height, drawingOptions);
+const myRectangle = new Pencil.Rectangle(<span class="note" data-note="More information on Positions below.">position</span>, width, height, drawingOptions);
     </code></pre>
     <p>
-        To know what are the specific properties of any {Component},
-        refer to its <a href="https://github.com/GMartigny/pencil.js#modules">documentation</a>.
+        To learn about specific properties of any {Component},
+        refer to the <a href="https://github.com/GMartigny/pencil.js#modules">module documentation</a>.
     </p>
     <p>
-        Here is the list of all {Component} possible options with their default values:
+        Here is the list of all options with their default values:
     </p>
     <pre><code class="javascript">
 const componentOptions = {
@@ -174,7 +175,7 @@ const componentOptions = {
 <div class="screen">
     <h2>Position</h2>
     <p>
-        {Position} is an utility class used all across the Pencil.js library.<br/>
+        {Position} is an utility class used across the Pencil.js library.<br/>
         It serves as a wrapper for a x and y coordinate in 2D space. You can create one using the class constructor.
     </p>
     <pre><code class="javascript">
@@ -183,7 +184,7 @@ const y = 200;
 const myPosition = new Pencil.Position(x, y);
     </code></pre>
     <p>
-        Alternatively, anywhere a position is needed, you can use this intuitive shorthand.
+        Alternatively, anywhere a position is needed, you can use an array shorthand.
     </p>
     <pre><code class="javascript">
 const myRectangle = new Pencil.Rectangle([<span class="note" data-note="Respectively x and y coordinates.">100, 200</span>]);
@@ -197,8 +198,8 @@ myPosition.add(10, 20).multiply(2).rotate(<span class="note" data-note="All rota
 console.log(myPosition.x, myPosition.y); // => -440, 220
     </code></pre>
     <p>
-        These functions don't return a new instance, but instead modify the existing one.
-        If you don't want that behavior, you can call <code>clone</code> first.
+        These functions don't return a new instance, but modify the existing one.
+        If you don't want that behavior, you can call <code>.clone</code> first.
     </p>
     <pre><code>
 console.log(myPosition.x, myPosition.y); // => 100, 200
@@ -212,7 +213,7 @@ console.log(clonePosition.x, clonePosition.y); // => -440, 220
 <div class="screen">
     <h2>Vector</h2>
     <p>
-        Much alike {Position}, {Vector} is an utility wrapper around two {Position}.
+        {Vector} is another utility wrapper containing a starting and an ending {Position}.
     </p>
     <pre><code>
 const myVector = new Pencil.Vector(fromPosition, toPosition);
@@ -220,7 +221,7 @@ const myVector = new Pencil.Vector(fromPosition, toPosition);
 const myVector = new Pencil.Vector([startX, startY], [endX, endY]);
     </code></pre>
     <p>
-        Of course, each instances carries useful chainable methods.
+        Each instances carries useful chainable methods.
     </p>
     <pre><code class="javascript">
 myVector<span class="note" data-note="Will mutate the instance.">.add(otherVector).multiply(2)</span>;
@@ -229,7 +230,7 @@ if (myVector.intersect(someVector)) {
 }
     </code></pre>
     <p>
-        You can also use the <code>clone</code> method to prevent operations from mutating your instance.
+        You can also use the <code>.clone</code> method to prevent operations from mutating your instance.
     </p>
 </div>
 
@@ -237,7 +238,7 @@ if (myVector.intersect(someVector)) {
 <div class="screen">
     <h2>Events</h2>
     <p>
-        All classes fire events whenever necessary and you can listen to those.
+        All classes fire events and you can listen to those.
     </p>
     <pre><code class="javascript">
 // Mouse events
@@ -280,13 +281,14 @@ container.on("eventName", callback, true); // Listen only to "eventName" trigger
 <div class="screen">
     <h2>Text</h2>
     <p>
-        You can write on the scene with the {Text} class. This one is a bit <span title="But don't tell it that, you'll make it sad.">different</span> from the other.
+        You can write on the scene with the {Text} class. This one is a bit <span title="But don't tell it that, you'll make it sad.">different</span> from the other {Component}s.
     </p>
     <pre><code class="javascript">
-const text = new Pencil.Text(aPosition, <span class="note" data-note="This supports multiline text with <code>``</code> notation or <code>\n</code>.">"Some text"</span>, options);
+const position = [0, 0];
+const text = new Pencil.Text(position, <span class="note" data-note="This supports multiline text with <code>``</code> notation or <code>\n</code>.">"Some text"</span>, options);
     </code></pre>
     <p>
-        {Text} have more options on top of <a href="#components">options from Component</a>. Here is the list with default values:
+        {Text} has more options on top of <a href="#components">options from Component</a>. Here is the list with default values:
     </p>
     <pre><code class="javascript">
 const textOptions = {
@@ -315,7 +317,7 @@ const text = new Pencil.Text(aPosition, "Robot &hearts; you", {
 <div class="screen">
     <h2>Interactions</h2>
     <p>
-        {Component} can be set {draggable} with a simple call of a function.
+        A {Component} can be set {draggable} with a simple call of a function.
     </p>
     <pre><code class="javascript">
 myRectangle.draggable();
@@ -329,7 +331,7 @@ myRectangle.draggable({
 });
     </code></pre>
     <p>
-        {Rectangle} can be set {resizable} with a simple call of a function.
+        A {Rectangle} can be set {resizable} with a simple call of a function.
     </p>
     <pre><code class="javascript">
 myRectangle.resizable();
@@ -348,7 +350,7 @@ myRectangle.resizable({
 <div class="screen">
     <h2>User inputs</h2>
     <p>
-        Pencil.js provide ways to let your users interacts with common inputs components ({Button}, {Checkbox}, {Select}, {Slider}, {Knob}).
+        Pencil.js provides ways to let your users interacts with common inputs components ({Button}, {Checkbox}, {Select}, {Slider}, {Knob}).
     </p>
     <pre><code class="javascript">
 new Pencil.Slider(aPosition, {
@@ -384,7 +386,7 @@ new Pencil.Button(yetAnotherPosition, {
     <h2>Color</h2>
     <p>
         Whenever you have to provide a color (fill or stroke option for example), you can use
-        <a href="https://developer.mozilla.org/docs/Web/CSS/color_value">all CSS color value</a> or the {Color} class.
+        <a href="https://developer.mozilla.org/docs/Web/CSS/color_value">a CSS color value</a> or the {Color} class.
     </p>
     <p>
         This utility class has several ways to be created.
@@ -397,7 +399,7 @@ new Pencil.Color(<span class="note" data-note="Short hexadecimal starting with #
 new Pencil.Color(<span class="note" data-note="Hexadecimal number.">0x123456</span>);
     </code></pre>
     <p>
-        Every one of this definitions can have one more parameter to define it's opacity.
+        Every one of this definitions can have one more parameter to define its opacity.
     </p>
     <pre><code class="javascript">
 const opacity = 0.7;
@@ -417,8 +419,8 @@ console.log(<span class="note" data-note="Returns the closest valid color name."
 <div class="screen">
     <h2>Navigation</h2>
     <p>
-        Pencil.js supports having multiple {Scene} at once and going back and forth between them,
-        but in order to simplify this process, you can use the {Navigation} helper.
+        Pencil.js supports having more than one {Scene} at once and going back and forth between them.
+        In order to simplify this process, you can use the {Navigation} helper.
     </p>
     <pre><code class="javascript">
 const <span class="note" data-note="The returned scene is the default one.">firstScene</span> = Pencil.Navigation.prepareScenes({
@@ -433,7 +435,7 @@ console.log(firstScene.options.shown && firstScene.isLooped); // => true
     </code></pre>
     <p>
         The first on the list is going to be the default scene and displayed right away.<br/>
-        Every {Scene} are going to share the same canvas element. If you already have one in your DOM,
+        All scenes are going to share the same canvas element. If you already have one in your DOM,
         you can put it as second parameter of the <code>prepareScenes</code> function.
     </p>
     <p>
@@ -459,7 +461,7 @@ import Star from "@pencil.js/star";
 import PencilImage from "@pencil.js/image";
     </code></pre>
     <p>
-        2. You can make you own class extending other existing ones.
+        2. You can make you own class extending existing ones.
     </p>
     <pre><code class="javascript">
 import Circle from "@pencil.js/circle";
@@ -490,7 +492,9 @@ const flippedImage = new Image(position, url, width, height, {
 });
     </code></pre>
 
-    <p>&hellip;</p>
+    <p>
+        Add your tip, by sending a pull request to <a href="https://github.com/pencil-js/website">this guide's repository</a>.
+    </p>
 </div>
 
 <script src="../res/highlight.min.js"></script>
