@@ -1,26 +1,11 @@
+// Highlight code block
 const codeBlocks = document.querySelectorAll("pre code");
 for (let code of codeBlocks) {
     code.innerHTML = code.innerHTML.trim();
     hljs.highlightBlock(code);
 }
 
-const afix = document.createElement("aside");
-afix.classList.add("afix");
-const toc = document.createElement("ul");
-const h2s = document.querySelectorAll("h2");
-for (let h2 of h2s) {
-    const id = h2.textContent.toLowerCase().replace(/\W/g, "-");
-    h2.parentElement.id = id;
-    const item = document.createElement("li");
-    const link = document.createElement("a");
-    link.href = `#${id}`;
-    link.textContent = h2.textContent;
-    item.appendChild(link);
-    toc.appendChild(item);
-}
-afix.appendChild(toc);
-document.body.appendChild(afix);
-
+// Auto link bracket surrounded to module
 const ps = document.querySelectorAll(".screen p");
 for(let p of ps) {
     p.innerHTML = p.innerHTML.replace(/{(.+?)}/g, (match, capture) => {
@@ -28,11 +13,13 @@ for(let p of ps) {
     });
 }
 
+// Prepare tooltip
 const tooltip = document.createElement("div");
 tooltip.classList.add("tooltip");
 document.body.appendChild(tooltip);
 
-const notes = document.querySelectorAll("code .note");
+// Add tooltip to code notes
+const notes = document.querySelectorAll(".note");
 for (let note of notes) {
     note.addEventListener("mousemove", (event) => {
         tooltip.classList.add("shown");

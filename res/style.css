@@ -49,6 +49,7 @@ h3 {
 
 p {
     line-height: 1.3em;
+    margin: 1rem 0;
 }
 
 .screen p {
@@ -99,7 +100,7 @@ strong {
 }
 
 .main-title {
-    padding: var(--main-title-size) 0;
+    padding: calc(var(--main-title-size) / 2) 0;
 }
 
 .main-title h1, .main-title h1 a {
@@ -117,6 +118,7 @@ strong {
     display: inline-block;
     background-color: rgba(0, 0, 0, 0.6);
     padding: 1em;
+    max-width: 55%;
 }
 
 .description > * {
@@ -137,9 +139,11 @@ strong {
     padding: var(--text-size);
     color: var(--main-color);
     background: var(--second-color);
+    border: none;
 }
 .btn:hover {
     text-decoration: none;
+    border: none;
 }
 
 .example {
@@ -201,13 +205,15 @@ canvas {
     display: block;
 }
 
+.github-corner {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
 .github-corner > svg {
     fill: #fff;
     color: #C6426E;
-    position: absolute;
-    top: 0;
     border: 0;
-    right: 0;
 }
 .github-corner .octo-arm {
     transform-origin: 130px 106px;
