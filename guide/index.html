@@ -415,6 +415,34 @@ console.log(<span class="note" data-note="Returns the closest valid color name."
     </code></pre>
 </div>
 
+<div class="screen">
+    <h2>Gradients</h2>
+    <p>
+        {Linear-gradient} and {Radial-gradient} can be used in any fill or stroke option. Both are described with a single object.
+    </p>
+    <pre><code class="javascript">
+const linear = new Pencil.LinearGradient(start, end, colorStops);
+const radial = new Pencil.RadialGradient(center, radius, colorStops);
+    </code></pre>
+    <p>
+        In both case, <code>colorStops</code> works the same way.
+    </p>
+    <p>
+        You define colors the gradient go through. Use the keys for the position ratio and the values for the color.
+    </p>
+    <pre><code class="javascript">
+const colorStops = {
+    0: "red",
+    0.5: "#0f0",
+    1: <span class="note" data-note="You can, of course, use the Color class seen above.">new Color(0, 0, 1)</span>,
+};
+    </code></pre>
+    <p>
+        All keys should be comprise between 0 and 1.
+        You don't have to set a value for 0 or 1, the closest color will be used in that case.
+    </p>
+</div>
+
 <!-- *** NAVIGATION *** -->
 <div class="screen">
     <h2>Navigation</h2>

@@ -1,5 +1,6 @@
 // Auto create a side menu
 const afix = document.createElement("aside");
+afix.setAttribute("role", "navigation");
 afix.classList.add("afix");
 const toc = document.createElement("ul");
 const h2s = document.querySelectorAll("h2");
