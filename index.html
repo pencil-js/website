@@ -5,7 +5,7 @@
     <meta name="google-site-verification" content="BWj9K4LA2V4C8OPEQyLeJFXAMMsxQj-w-ZMztXd7ZoY"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link type="image/png" rel="icon" href="https://raw.githubusercontent.com/GMartigny/pencil.js/master/media/mini-logo.png"/>
-    <title>Playground - Pencil.js</title>
+    <title>Pencil.js</title>
     <link type="text/css" rel="stylesheet" href="res/reset.css"/>
     <link type="text/css" rel="stylesheet" href="res/style.css"/>
 </head>
@@ -37,23 +37,32 @@
     <h2>Examples</h2>
     <div class="element">
         <h3><a href="https://rampantgames.com/blog/?p=7745">A simple Black triangle</a></h3>
-        <div class="example" id="black-triangle"></div>
+        <div class="example" data-script="black-triangle"></div>
     </div>
 
     <div class="element">
         <h3>Many drawing possibilities...</h3>
-        <div class="example" id="many-possibilities"></div>
+        <div class="example" data-script="many-possibilities"></div>
     </div>
 
     <div class="element">
         <h3>And lots of different shapes !</h3>
-        <div class="example" id="lots-of-shapes"></div>
+        <div class="example" data-script="lots-of-shapes"></div>
     </div>
 </div>
 
-<script src="https://unpkg.com/pencil.js@1.15.0/dist/pencil.min.js"></script>
 <script src="res/highlight.min.js"></script>
-<script src="playground.js"></script>
+
+<script type="module">
+    import loadExample from "./res/examples.js";
+
+    const pens = [
+        "zYGargv",
+        "ExjRKYP",
+        "bGdKEXm",
+    ];
+    loadExample(pens);
+</script>
 
 <a href="https://github.com/pencil-js/pencil.js" class="github-corner" aria-label="View source on GitHub">
     <svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true">

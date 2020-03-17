@@ -9,11 +9,12 @@ code {
     background: #23241f;
     color: #FFFFFF;
     line-height: 1.3em;
-    display: inline;
     padding: 0.25em 0.5em;
 }
 div:not(.example) > pre code {
-    margin: 0 150px;
+    width: 60%;
+    min-width: 500px;
+    margin: 0 auto;
 }
 
 code .note {
@@ -21,4 +22,19 @@ code .note {
 }
 code .note:hover {
     background-color: rgba(255, 245, 175, 0.3);
+}
+
+.example .codepen {
+    position: absolute;
+    bottom: 0.5em;
+    right: calc(50% + 1em);
+}
+.example .codepen:after {
+    display: block;
+    content: "";
+    border-radius: 50%;
+    background: url(codepen-icon.svg) #f8f8f2 no-repeat .1em .1em;
+    background-size: 1em 1em;
+    height: 1.2em;
+    width: 1.2em;
 }

@@ -147,21 +147,25 @@ strong {
 }
 
 .example {
+    position: relative;
     display: flex;
+    border: 1px solid #272822;
+    max-height: 92vh;
 }
-
-.example > * {
+.example > pre, .example > iframe {
     width: 50%;
 }
-
 .example pre {
     margin: 0;
-    line-height: 1.5;
+    min-height: 150px;
+    overflow: auto;
 }
-
+.example code {
+    min-height: 150px;
+}
 .example .scene {
-    border: solid #272822;
     border-width: 1px;
+    border-left-width: 0;
 }
 
 canvas {
@@ -213,7 +217,6 @@ canvas {
 .github-corner > svg {
     fill: #fff;
     color: #C6426E;
-    border: 0;
 }
 .github-corner .octo-arm {
     transform-origin: 130px 106px;
