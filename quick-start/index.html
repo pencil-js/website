@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link type="image/png" rel="icon" href="https://raw.githubusercontent.com/GMartigny/pencil.js/master/media/mini-logo.png">
+    <title>Quick-start - Pencil.js</title>
+    <link type="text/css" rel="stylesheet" href="../res/reset.css"/>
+    <link type="text/css" rel="stylesheet" href="../res/style.css"/>
+</head>
+<body>
+<div class="title-screen">
+    <div class="main-title">
+        <h1>
+            Quick-start
+        </h1>
+        <small>
+            A clear step-by-step demonstration of Pencil.js
+        </small>
+    </div>
+    <div class="element description">
+        <p>
+            Come along, to create a nice animation in <strong>50 lines of code</strong>.<br>
+            You can easily follow, as each of the 9 steps introduces <strong>one feature at a time</strong>.<br>
+            This is the <strong>easiest way</strong> to get to know Pencil.js and should take about 5 minutes to read.
+        </p>
+        <div>
+            <a class="btn" href="../guide/">Guide</a>
+            <a class="btn" href="https://codepen.io/collection/XqzkNQ/">Examples</a>
+            <a class="btn" href="../enterprise/">For enterprises</a>
+        </div>
+    </div>
+</div>
+
+<!-- *** SETUP *** -->
+<div class="screen">
+    <h2>Setup</h2>
+    <p>
+        <a href="https://caniuse.com/#feat=mdn-javascript_statements_import">On capable browsers</a>,
+        you can use the import statement to load Pencil.js.
+    </p>
+    <div class="example" data-script="n1"></div>
+    <p>
+        First thing you will need is a {Scene}. Once created, you can render it to display its content.
+    </p>
+    <div class="example" data-script="n2"></div>
+    <p>
+        Next, we will start to add a {Component} and see the real power of the library.
+    </p>
+</div>
+
+<!-- *** COMPONENTS *** -->
+<div class="screen">
+    <h2>Components</h2>
+    <p>
+        Everything drawn in Pencil.js is a {Component}. They all share the same behavior.
+    </p>
+    <p>
+        You will always declare {Component} with a position followed by one or more parameters. For example, {Circle} only needs a position and a radius.
+    </p>
+    <div class="example" data-script="n3"></div>
+    <p>
+        Once a {Component} is added to a {Scene} or another {Component}, it will be displayed on screen.
+    </p>
+</div>
+
+<!-- *** OPTIONS *** -->
+<div class="screen">
+    <h2>Options</h2>
+    <p>
+        In order to control the look of our {Circle}, let's change its options and rename it to <code>sun</code> to match its new look.
+    </p>
+    <p>
+        Let's also change the {Scene}'s background color.
+        Because we don't want to change the first argument of the {Scene} constructor, we can leave it at <code>undefined</code>.
+    </p>
+    <div class="example" data-script="n4"></div>
+    <p>
+        In the same way, we can add the ocean with a {Rectangle}.
+    </p>
+    <div class="example" data-script="n5"></div>
+</div>
+
+<!-- *** INTERACTION *** -->
+<div class="screen">
+    <h2>Interaction</h2>
+    <p>
+        A lot of Pencil.js is build around interaction with the user so you can build beautiful and interesting composition.
+    </p>
+    <p>
+        Firstly, we need to replace the <code>render</code> function (which render the scene only once) to <code>startLoop</code>.
+        This will make the scene update itself.
+    </p>
+    <p>
+        Secondly, let's make the <code>sun</code> follow the mouse. For that, we'll listen to the <code>"draw"</code> event
+        and update the <code>sun</code>'s position.
+    </p>
+    <div class="example" data-script="n6"></div>
+    <p>
+        The <code>lerp</code> function moves the position by 5% of the distance each time, giving it a smoother animation.
+    </p>
+</div>
+
+<!-- *** COLOR *** -->
+<div class="screen">
+    <h2>Colors</h2>
+    <p>
+        The <code>sun</code> is setting, but the sky color stay the same.
+        We can improve this by changing the sky's color according to the <code>sun</code>'s position.
+    </p>
+    <div class="example" data-script="n7"></div>
+    <p>
+        Note that, like {Position}, {Color} also have a <code>lerp</code> function to go from one color to another.
+    </p>
+    <p>
+        Now, let's do the same for the <code>ocean</code>.
+        But instead of changing the color, let's add a gradient and move it around.
+    </p>
+    <div class="example" data-script="n8"></div>
+</div>
+
+<!-- *** PARTICLES *** -->
+<div class="screen">
+    <h2>Particles</h2>
+    <p>
+        Final touch! Let's add stars when the sky turn dark.
+        We could add a bunch of {Star}s, but this could have an impact on drawing performance.
+        Instead, let's use {Particles}. They perform better when you want to draw the same shape thousands of times.
+    </p>
+    <div class="example" data-script="n9"></div>
+    <p>
+        And voila!
+    </p>
+    <p>
+        Now it's your turn to build amazing things and <a href="https://github.com/pencil-js/awesome">share them with us</a>!
+    </p>
+</div>
+
+<script src="../res/highlight.min.js"></script>
+<script src="../res/autolink.js"></script>
+<script src="../res/menu-afix.js"></script>
+
+<script type="module">
+    import loadExample from "../res/examples.js";
+
+    const pens = [
+        "dyoeZGr",
+        "XWbqVjL",
+        "ZEGovJN",
+        "vYOjpQe",
+        "oNXdpVW",
+        "oNXyNeV",
+        "RwPJrNa",
+        "yLNEeyE",
+        "dyoKGoP",
+    ];
+    loadExample(pens);
+</script>
+
+<a href="https://github.com/pencil-js/pencil.js" class="github-corner" aria-label="View source on GitHub">
+    <svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+</body>
+</html>
