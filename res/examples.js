@@ -2,6 +2,8 @@ export default async (pens) => {
     const examples = document.querySelectorAll(".example");
 
     await Promise.all([...examples].map(async (example, index) => {
+        example.classList.add("loading");
+
         const url = `./examples/${example.dataset.script}.min.js`;
         const response = await fetch(url);
         if (response.ok) {
@@ -27,7 +29,11 @@ export default async (pens) => {
             link.className = "codepen";
             example.appendChild(link);
         }
-    }));
+    }), fetch("https://unpkg.com/pencil.js/dist/pencil.esm.js"));
+
+    for (const ex of examples) {
+        ex.classList.remove("loading");
+    }
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(({ isIntersecting, target }) => {

@@ -168,6 +168,22 @@ strong {
     border-left-width: 0;
 }
 
+.example.loading iframe {
+    background-image: linear-gradient(90deg, transparent 0, rgba(255, 255, 255, .4) 25%, transparent 50%);
+    background-position: 0 0;
+    background-size: 200% 100%;
+    background-color: #d7d7d7;
+    animation: loading infinite 1.5s;
+}
+@keyframes loading {
+    from {
+        background-position: 100% 0;
+    }
+    to {
+        background-position: -100% 0;
+    }
+}
+
 canvas {
     display: block;
 }
