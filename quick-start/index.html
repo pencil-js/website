@@ -2,13 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link type="image/png" rel="icon" href="https://raw.githubusercontent.com/GMartigny/pencil.js/master/media/mini-logo.png">
     <title>Quick-start - Pencil.js</title>
+    <meta name="description" content="5 minutes introduction to Pencil.js.">
+
     <link type="text/css" rel="stylesheet" href="../res/reset.css"/>
     <link type="text/css" rel="stylesheet" href="../res/style.css"/>
 </head>
 <body>
-<div class="title-screen">
+<header class="title-screen">
     <div class="main-title">
         <h1>
             Quick-start
@@ -23,17 +26,17 @@
             You can easily follow, as each of the 9 steps introduces <strong>one feature at a time</strong>.<br>
             This is the <strong>easiest way</strong> to get to know Pencil.js and should take about 5 minutes to read.
         </p>
-        <div>
+        <nav>
             <a class="btn" href="../guide/">Guide</a>
             <a class="btn" href="https://docs.pencil-js.vercel.app/">Docs</a>
             <a class="btn" href="https://codepen.io/collection/XqzkNQ/">Examples</a>
             <a class="btn" href="../enterprise/">For enterprises</a>
-        </div>
+        </nav>
     </div>
-</div>
+</header>
 
 <!-- *** SETUP *** -->
-<div class="screen">
+<section class="screen">
     <h2>Setup</h2>
     <p>
         <a href="https://caniuse.com/#feat=mdn-javascript_statements_import">On capable browsers</a>,
@@ -47,10 +50,10 @@
     <p>
         Next, we will start to add a {Component} and see the real power of the library.
     </p>
-</div>
+</section>
 
 <!-- *** COMPONENTS *** -->
-<div class="screen">
+<section class="screen">
     <h2>Components</h2>
     <p>
         Everything drawn in Pencil.js is a {Component}. They all share the same behavior.
@@ -62,10 +65,10 @@
     <p>
         Once a {Component} is added to a {Scene} or another {Component}, it will be displayed on screen.
     </p>
-</div>
+</section>
 
 <!-- *** OPTIONS *** -->
-<div class="screen">
+<section class="screen">
     <h2>Options</h2>
     <p>
         In order to control the look of our {Circle}, let's change its options and rename it to <code>sun</code> to match its new look.
@@ -79,10 +82,10 @@
         In the same way, we can add the ocean with a {Rectangle}.
     </p>
     <div class="example" data-script="n5"></div>
-</div>
+</section>
 
 <!-- *** INTERACTION *** -->
-<div class="screen">
+<section class="screen">
     <h2>Interaction</h2>
     <p>
         A lot of Pencil.js is build around interaction with the user so you can build beautiful and interesting composition.
@@ -99,10 +102,10 @@
     <p>
         The <code>lerp</code> function moves the position by 5% of the distance each time, giving it a smoother animation.
     </p>
-</div>
+</section>
 
 <!-- *** COLOR *** -->
-<div class="screen">
+<section class="screen">
     <h2>Colors</h2>
     <p>
         The <code>sun</code> is setting, but the sky color stay the same.
@@ -117,10 +120,10 @@
         But instead of changing the color, let's add a gradient and move it around.
     </p>
     <div class="example" data-script="n8"></div>
-</div>
+</section>
 
 <!-- *** PARTICLES *** -->
-<div class="screen">
+<section class="screen">
     <h2>Particles</h2>
     <p>
         Final touch! Let's add stars when the sky turn dark.
@@ -137,7 +140,7 @@
     <p>
         For a more in depth presentation of Pencil.js, take a look at the <a href="../guide/">official guide</a>.
     </p>
-</div>
+</section>
 
 <script src="../res/highlight.min.js"></script>
 <script src="../res/autolink.js"></script>

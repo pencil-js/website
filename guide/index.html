@@ -2,13 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link type="image/png" rel="icon" href="https://raw.githubusercontent.com/GMartigny/pencil.js/master/media/mini-logo.png">
     <title>Guide - Pencil.js</title>
+    <meta name="description" content="Presentation of Pencil.js features.">
+
     <link type="text/css" rel="stylesheet" href="../res/reset.css"/>
     <link type="text/css" rel="stylesheet" href="../res/style.css"/>
 </head>
 <body>
-<div class="title-screen">
+<header class="title-screen">
     <div class="main-title">
         <h1>
             Guide
@@ -23,17 +26,17 @@
             It assumes <strong>basic knowledge</strong> of web technologies (HTML, JavaScript, NPM &hellip;).<br/>
             By the end of the page, you will be able to build your own <strong>creations with ease</strong>.
         </p>
-        <div>
+        <nav>
             <a class="btn" href="../quick-start/">Quick-start</a>
             <a class="btn" href="https://docs.pencil-js.vercel.app/">Docs</a>
             <a class="btn" href="https://codepen.io/collection/XqzkNQ/">Examples</a>
             <a class="btn" href="../enterprise/">For enterprises</a>
-        </div>
+        </nav>
     </div>
-</div>
+</header>
 
 <!-- *** START *** -->
-<div class="screen">
+<section class="screen">
     <h2>Getting started</h2>
     <p>
         First of all, you need to add the library to your page.<br/>
@@ -59,10 +62,10 @@ $ npm install pencil.js
     <pre><code class="javascript">
 console.log(Pencil.version);
     </code></pre>
-</div>
+</section>
 
 <!-- *** SCENE *** -->
-<div class="screen">
+<section class="screen">
     <h2>Scene</h2>
     <p>
         The first and main element of your code should be a {Scene}.
@@ -86,10 +89,10 @@ myFirstScene.render();
     <pre><code class="javascript">
 myFirstScene.<span class="note" data-note="Will animate the scene until you call <code>myFirstScene.stopLoop()</code>.">startLoop()</span>;
     </code></pre>
-</div>
+</section>
 
 <!-- *** CONTAINERS *** -->
-<div class="screen">
+<section class="screen">
     <h2>Containers</h2>
     <p>
         A {Container} allows you to group elements together.
@@ -130,10 +133,10 @@ const containerOptions = {
     <span class="note" data-note="Another shape acting as a mask.">clip: null</span>,
 };
     </code></pre>
-</div>
+</section>
 
 <!-- *** COMPONENTS *** -->
-<div class="screen">
+<section class="screen">
     <h2>Components</h2>
     <p>
         {Component} refers to any drawable part of a scene.
@@ -172,10 +175,10 @@ const componentOptions = {
     <span class="note" data-note="How lines should connect to each other.">join: Pencil.Component.joins.miter</span>,
 };
     </code></pre>
-</div>
+</section>
 
 <!-- *** POSITION *** -->
-<div class="screen">
+<section class="screen">
     <h2>Position</h2>
     <p>
         {Position} is an utility class used across the Pencil.js library.<br/>
@@ -210,10 +213,10 @@ const clonePosition = myPosition.<span class="note" data-note="Copy to a new ins
 console.log(myPosition.x, myPosition.y); // => 100, 200
 console.log(clonePosition.x, clonePosition.y); // => -440, 220
     </code></pre>
-</div>
+</section>
 
 <!-- *** VECTOR *** -->
-<div class="screen">
+<section class="screen">
     <h2>Vector</h2>
     <p>
         {Vector} is another utility wrapper containing a starting and an ending {Position}.
@@ -235,10 +238,10 @@ if (myVector.intersect(someVector)) {
     <p>
         You can also use the <code>.clone</code> method to prevent operations from mutating your instance.
     </p>
-</div>
+</section>
 
 <!-- *** EVENTS *** -->
-<div class="screen">
+<section class="screen">
     <h2>Events</h2>
     <p>
         All classes fire events and you can listen to those.
@@ -278,10 +281,10 @@ myImage.on(eventName, () => myScene.add(myImage).render());
 container.on("eventName", callback);       // Listen to all "eventName" triggered by any of container's children
 container.on("eventName", callback, true); // Listen only to "eventName" triggered by container
     </code></pre>
-</div>
+</section>
 
 <!-- *** TEXT *** -->
-<div class="screen">
+<section class="screen">
     <h2>Text</h2>
     <p>
         You can write on the scene with the {Text} class. This one is a bit <span title="But don't tell it that, you'll make it sad.">different</span> from the other {Component}s.
@@ -314,10 +317,10 @@ const text = new Pencil.Text(aPosition, "Robot &hearts; you", {
 });
 <span class="note" data-note="This works fine even with local fonts that don't need to be loaded.">text.on("ready"</span>, () => myScene.add(text).render());
     </code></pre>
-</div>
+</section>
 
 <!-- *** INTERACTIONS *** -->
-<div class="screen">
+<section class="screen">
     <h2>Interactions</h2>
     <p>
         A {Component} can be set {draggable} with a simple call of a function.
@@ -347,10 +350,10 @@ myRectangle.resizable({
     <span class="note" data-note="Limits width and height inside the boundaries [min, max].">constrain: new Pencil.Vector(min, max)</span>,
 });
     </code></pre>
-</div>
+</section>
 
 <!-- *** USER INPUTS *** -->
-<div class="screen">
+<section class="screen">
     <h2>User inputs</h2>
     <p>
         Pencil.js provides ways to let your users interacts with common inputs components ({Button}, {Checkbox}, {Select}, {Slider}, {Knob}).
@@ -382,10 +385,10 @@ new Pencil.Button(yetAnotherPosition, {
     <span class="note" data-note="Background color when hovered">hover: "#444"</span>,
 });
     </code></pre>
-</div>
+</section>
 
 <!-- *** COLOR *** -->
-<div class="screen">
+<section class="screen">
     <h2>Color</h2>
     <p>
         Whenever you have to provide a color (fill or stroke option for example), you can use
@@ -416,9 +419,9 @@ const color = new Pencil.Color("olive");
 color.<span class="note" data-note="Set its saturation level to 0.9.">saturation(0.9)</span>.<span class="note" data-note="Inverse all its values.">reverse()</span>;
 console.log(<span class="note" data-note="Returns the closest valid color name.">color.name</span>); // => "mediumslateblue"
     </code></pre>
-</div>
+</section>
 
-<div class="screen">
+<section class="screen">
     <h2>Gradients</h2>
     <p>
         {Linear-gradient} and {Radial-gradient} can be used in any fill or stroke option. Both are described with a single object.
@@ -444,10 +447,10 @@ const colorStops = {
         All keys should be comprise between 0 and 1.
         You don't have to set a value for 0 or 1, the closest color will be used in that case.
     </p>
-</div>
+</section>
 
 <!-- *** NAVIGATION *** -->
-<div class="screen">
+<section class="screen">
     <h2>Navigation</h2>
     <p>
         Pencil.js supports having more than one {Scene} at once and going back and forth between them.
@@ -477,10 +480,10 @@ console.log(firstScene.options.shown && firstScene.isLooped); // => true
 const scene = Pencil.Navigation.getCurrentScene();
 scene.fire(new BaseEvent(Scene.events.change, "other");
     </code></pre>
-</div>
+</section>
 
 <!-- *** PRO TIPS *** -->
-<div class="screen">
+<section class="screen">
     <h2>Pro-tips</h2>
     <p>
         1. Keep your code cleaner and lighter by only importing parts of Pencil.js that you need.
@@ -526,7 +529,7 @@ const flippedImage = new Image(position, url, width, height, {
     <p>
         Add your tip, by sending a pull request to <a href="https://github.com/pencil-js/website">this guide's repository</a>.
     </p>
-</div>
+</section>
 
 <script src="../res/highlight.min.js"></script>
 <script src="../res/highlight-code.js"></script>
