@@ -386,9 +386,9 @@ new Pencil.Select(anotherPosition, <span class="note" data-note="List of items."
     <pre><code class="javascript">
 new Pencil.Button(yetAnotherPosition, {
     <span class="note" data-note="Text of the button">value: "Click me"</span>,
-    <span class="note" data-note="Foreground color">fill: "red"</span>,
-    <span class="note" data-note="Background color">background: "#222"</span>,
-    <span class="note" data-note="Border color">border: "gold"</span>,
+    <span class="note" data-note="Text color">foreground: "red"</span>,
+    <span class="note" data-note="Background color">fill: "#222"</span>,
+    <span class="note" data-note="Border color">stroke: "gold"</span>,
     <span class="note" data-note="Background color when hovered">hover: "#444"</span>,
 });
     </code></pre>
@@ -464,7 +464,7 @@ const colorStops = {
         In order to simplify this process, you can use the {Navigation} helper.
     </p>
     <pre><code class="javascript">
-const <span class="note" data-note="The returned scene is the default one.">firstScene</span> = Pencil.Navigation.prepareScenes({
+const <span class="note" data-note="Every prepared scene, by name.">scenes</span> = Pencil.Navigation.prepareScenes({
     main: (scene) => {
         // Add whatever you want to the scene
     },
@@ -472,7 +472,7 @@ const <span class="note" data-note="The returned scene is the default one.">firs
         // ...
     },
 });
-console.log(firstScene.options.shown && firstScene.isLooped); // => true
+console.log(scenes.main.options.shown && scenes.main.isLooped); // => true
     </code></pre>
     <p>
         The first on the list is going to be the default scene and displayed right away.<br/>
@@ -485,7 +485,7 @@ console.log(firstScene.options.shown && firstScene.isLooped); // => true
     </p>
     <pre><code class="javascript">
 const scene = Pencil.Navigation.getCurrentScene();
-scene.fire(new BaseEvent(Scene.events.change, "other");
+scene.fire(new Pencil.BaseEvent(Pencil.Scene.events.change, "other"));
     </code></pre>
 </section>
 
@@ -498,14 +498,14 @@ scene.fire(new BaseEvent(Scene.events.change, "other");
     <pre><code class="javascript">
 import { Star, <span class="note" data-note="Some classes have the same name as existing globals (Image, Math &hellip;) and should be renamed when imported.">Image as PencilImage</span> } from "pencil.js";
 // same as
-import Star from "@pencil.js/star";
-import PencilImage from "@pencil.js/image";
+import Star from "pencil.js/star";
+import PencilImage from "pencil.js/image";
     </code></pre>
     <p>
         2. You can make you own class extending existing ones.
     </p>
     <pre><code class="javascript">
-import Circle from "@pencil.js/circle";
+import Circle from "pencil.js/circle";
 class BlueCircle extends Circle {
     static get defaultOptions () {
         return {
@@ -520,7 +520,7 @@ class BlueCircle extends Circle {
     </p>
     <pre><code class="javascript">
 const myEventName = "something append";
-eventTarget.fire(new Pencil.<span class="note" data-note="You can use MouseEvent by adding a Position, or KeyboardEvent by adding a key as third parameter.">BaseEvent</span>(myEventName, eventTarget);
+eventTarget.fire(new Pencil.<span class="note" data-note="You can use MouseEvent by adding a Position, or KeyboardEvent by adding a key as third parameter.">BaseEvent</span>(myEventName, eventTarget));
 // and listen using the same event name.
 myScene.on(myEventName, doSomething);
     </code></pre>
@@ -528,7 +528,7 @@ myScene.on(myEventName, doSomething);
         4. You can use the scale option to flip components.
     </p>
     <pre><code class="javascript">
-const flippedImage = new Image(position, url, width, height, {
+const flippedImage = new Image(position, url, {
     scale: [-1, 1], // Flip the image horizontally
 });
     </code></pre>
